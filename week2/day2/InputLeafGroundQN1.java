@@ -23,10 +23,15 @@ public class InputLeafGroundQN1 {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.get("https://www.leafground.com/input.xhtml");
 		driver.manage().window().maximize();
+		//---------------------Type your name----------------------------------------------
 	    WebElement name=driver.findElement(By.xpath("//h5[text()='Type your name']//following::input[1]"));
+	    name.click();
 		name.sendKeys("Kowsalya");		
+		//----------------------Append Country to this City.-------------------------------------------
 		WebElement appendcountry=driver.findElement(By.xpath("//h5[text()='Append Country to this City.']//following::input[1]"));
+		appendcountry.click();
 		appendcountry.sendKeys("India");
+		//--------------Verify if text box is disabled---------------------------------------------
 		WebElement textboxdisabled=driver.findElement(By.xpath("//h5[text()='Verify if text box is disabled']//following::input[1]"));
 		boolean textboxresult=textboxdisabled.isEnabled();
 		if(textboxresult)
@@ -37,19 +42,26 @@ public class InputLeafGroundQN1 {
 		{
 			System.out.println("It's disabled");
 		}
+		//----------------------------Clear the typed text.--------------------------------------------------------
 		WebElement cleartext=driver.findElement(By.xpath("//h5[text()='Clear the typed text.']//following::input[1]"));
 		cleartext.clear();
+		//-------------------------------Retrieve the typed text.------------------------------------------------------
 		WebElement retrivetext=driver.findElement(By.xpath("//h5[text()='Retrieve the typed text.']//following::input[1]"));
 		String retrivedtext=retrivetext.getAttribute("value");	
 		System.out.println("The retrived text is" +'\n'+ retrivedtext);	
+		//-------------------------------Type email and Tab. Confirm control moved to next element.------------------
 		WebElement typemail=driver.findElement(By.xpath("//h5[text()='Type email and Tab. Confirm control moved to next element.']//following::input[1]"));
+		typemail.click();
 		typemail.sendKeys("Kowsalya@gmail.com");
 		typemail.sendKeys(Keys.TAB);
 	    WebElement yourself=driver.findElement(By.xpath("//h5[text()='Type about yourself']//following::textarea[1]"));
 	    String highlightcolour=yourself.getCssValue("border-color");//(135, 187, 228)
 		System.out.println("Highlighted colour is " +highlightcolour);
 		System.out.println("Tab worked fine");
+		//------------------------------------Type about yourself------------------------------------
+		yourself.click();
 		yourself.sendKeys("I am Kowsalya Elangovan");
+		//-------------------------------------------Text Editor--------------------------------------
 	     WebElement texteditor=driver.findElement(By.xpath("//h5[text()='Text Editor']//following::p[1]"));
 	     texteditor.click();
 	     texteditor.sendKeys("Text for text editor");
@@ -60,12 +72,16 @@ public class InputLeafGroundQN1 {
 		 String tagname1=driver.findElement(By.xpath("//h5[text()='Text Editor']//following::p[1]//*")).getTagName();
 		Assert.assertEquals(tagname1, "strong");
 		System.out.println("The font is bold");
+		//-------------------------------------------------------------------------------------------------------------------
+		//---------------------------------------------------------------------------------------------------------------------------
+		//----------------------------------------Just Press Enter and confirm error message*--------------------------------
 		String error="Age is mandatory";
 		WebElement errormesenter=driver.findElement(By.xpath("//h5[text()='Just Press Enter and confirm error message*']//following::input[2]"));
 		errormesenter.sendKeys(Keys.ENTER);
 		String errormessage=driver.findElement(By.xpath("//span[text()='Age is mandatory']")).getText();
 		Assert.assertEquals(errormessage, error);
 		System.out.println("Verified the error message successfully");
+		//------------------------Click and Confirm Label Position Changes------------------------------------
 		WebElement labelposition=driver.findElement(By.xpath("//label[text()='Username']"));
 		Point locations=labelposition.getLocation();
 		System.out.println("Before Location is " +locations);
@@ -73,6 +89,7 @@ public class InputLeafGroundQN1 {
 		labelfield.click();
 		Point locations2=labelposition.getLocation();
 		System.out.println("After Location is " +locations2);
+		//---------------------------------Type your name and choose the third option------------------------------
 		WebElement typeyourname=driver.findElement(By.xpath("//h5[text()='Type your name and choose the third option']//following::input[1]"));
 		typeyourname.sendKeys("Kowsalya");
 		WebElement clickdownarrow=driver.findElement(By.xpath("//h5[text()='Type your name and choose the third option']//following::button[1]"));
@@ -81,8 +98,9 @@ public class InputLeafGroundQN1 {
 		WebElement thirdoption=driver.findElement(By.xpath("//li[text()='2']"));
 		thirdoption.click();
 		WebElement selectedoption=driver.findElement(By.xpath("//h5[text()='Type your name and choose the third option']//following::span[text()][1]"));
-		String selctedname=selectedoption.getText();
-		System.out.println("Selected name is " +selctedname);
+		String selectedname=selectedoption.getText();
+		System.out.println("Selected name is " +selectedname);
+		//---------------------------------Type your DOB (mm/dd/yyyy) and confirm date chosen------------------------
 		WebElement typedob=driver.findElement(By.xpath("//h5[text()='Type your DOB (mm/dd/yyyy) and confirm date chosen ']//following::input[1]"));
 		typedob.sendKeys("05/23/1996");
 		typedob.click();
@@ -104,6 +122,7 @@ public class InputLeafGroundQN1 {
 		System.out.println("DOB Date is correct");
 		}
 		typedob.click();
+		//-----------------------------------Type number and spin to confirm value changed--------------------------------
 		WebElement typenumber=driver.findElement(By.xpath("//h5[text()='Type number and spin to confirm value changed']//following::input[1]"));
 		typenumber.sendKeys("34");
 		WebElement uparrow=driver.findElement(By.xpath("//h5[text()='Type number and spin to confirm value changed']//following::a[1]"));
@@ -115,12 +134,14 @@ public class InputLeafGroundQN1 {
 		downarrow.click();
 		String decreasednumber=typenumber.getAttribute("aria-valuenow");
 		System.out.println("After clicking downarrow number is " +decreasednumber);
+		//-----------------------------Type random number (1-100) and confirm slider moves correctly---------------------------
 		WebElement typerandomnumber=driver.findElement(By.xpath("//h5[text()='Type random number (1-100) and confirm slider moves correctly']//following::input[1]"));
 		typerandomnumber.sendKeys("66");
 		WebElement slider=driver.findElement(By.xpath("//h5[text()='Type random number (1-100) and confirm slider moves correctly']//following::span[1]"));
 		Thread.sleep(3000);
 		String silderposition=slider.getAttribute("style");
 		System.out.println("Slider position is " +silderposition);
+		//--------------------------------Click and Confirm Keyboard appears---------------------------------
 		WebElement clickandCheckKeyboard=driver.findElement(By.xpath("//h5[text()='Click and Confirm Keyboard appears']//following::input[1]"));
 		clickandCheckKeyboard.click();		
 		Boolean closebtnkeyboard=driver.findElement(By.xpath("//div[@class='keypad-row']//button[text()='Close']")).isDisplayed();
@@ -135,6 +156,7 @@ public class InputLeafGroundQN1 {
 		Thread.sleep(3000);
 		WebElement closebtn=driver.findElement(By.xpath("//div[@class='keypad-row']//button[text()='Close']"));
 		closebtn.click();
+		//-------------------------------Custom Toolbar------------------------------------------------------
 		WebElement customtoolbar=driver.findElement(By.xpath("//h5[text()='Custom Toolbar']//following::div//p"));
 		customtoolbar.click();
 		customtoolbar.sendKeys("Test Leaf");
@@ -146,7 +168,6 @@ public class InputLeafGroundQN1 {
 		Assert.assertEquals(tagname2, "em");
 		System.out.println("The font is Italic");
 		//driver.close();
-				
 		
 	}
 
