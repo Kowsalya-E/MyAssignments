@@ -3,6 +3,10 @@ package week4.day2;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -34,8 +38,28 @@ public class SnapdealAss3 {
 		driver.findElement(By.xpath("//div[contains(text(),'Popularity')]")).click();
 		driver.findElement(By.xpath("//div[contains(text(),'Popularity')]//following::li[2]")).click();
 		//----------sorted correctly--------------------------------------CHECK
+		List<WebElement> priceelement=driver.findElements(By.xpath("//span[contains(@class,'product-price')]"));
+		int n=priceelement.size();
+		System.out.println("Size of total sorted shoes " +n);
 		
-		WebElement ip1=driver.findElement(By.xpath("//div[@class='price-text-box']//input[1]"));
+		List<String> listordered=new LinkedList<String>();
+		for (WebElement match : priceelement) {
+			listordered.add(match.getText());
+	    }
+		List<Integer> list2=new LinkedList<Integer>();
+		
+       for(String str:listordered)
+       {
+    	   int number=Integer.parseInt(str);
+    	   list2.add(number);
+       }
+       Collections.sort(list2);
+       System.out.println("Sorted values ");
+       for(int z:list2)
+       {
+    	  System.out.println(z);
+       }
+		/*WebElement ip1=driver.findElement(By.xpath("//div[@class='price-text-box']//input[1]"));
 		ip1.clear();
 		ip1.sendKeys("900");
 		WebElement ip2=driver.findElement(By.xpath("(//div[@class='price-text-box']//input)[2]"));
@@ -46,12 +70,11 @@ public class SnapdealAss3 {
 		Boolean filter1=driver.findElement(By.xpath("//div[contains(text(),'Price Low To High')]")).isDisplayed();
 		Boolean filter2=driver.findElement(By.xpath("//input[@id='Color_s-Navy' and @checked='checked']")).isEnabled();
 		System.out.println("Filter Verification " +filter1 +" "+ filter2);
-		
-	/*	WebElement result=driver.findElement(By.xpath("//p[contains(@title,'Navy')]"));//--mousehover not happened check
+		WebElement result=driver.findElement(By.xpath("//picture[@class='picture-elem']//img"));//--mousehover
 		Actions action=new Actions(driver);
 		//WebDriverWait wait=new WebDriverWait(driver,30);
 		//wait.until(ExpectedConditions.elementToBeClickable(result));
-		action.moveToElement(result).build().perform();*/
+		action.moveToElement(result).build().perform();
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//div[contains(text(),'Quick View')]")).click();
 		String price=driver.findElement(By.xpath("//span[@class='payBlkBig']")).getText();
@@ -66,7 +89,7 @@ public class SnapdealAss3 {
 
 		driver.findElement(By.xpath("//div[contains(@class,'close')]")).click();
 		//driver.close();
-		
+		*/
 		
 		
 		

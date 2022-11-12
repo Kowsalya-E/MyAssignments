@@ -41,14 +41,33 @@ public class DragDropLeafGroundAss1 {
 		action.dragAndDrop(dragtarget,droppabletarget).build().perform();
 		WebElement result=driver.findElement(By.xpath("//span[text()='Droppable Target']//following::p"));
 		String resulttxt=result.getText();
-		System.out.println("Result of droppable is " +resulttxt);*/
+		System.out.println("Result of droppable is " +resulttxt);
 		//------------------------------Draggable Rows-----------------------------------------------------------------------------------------CHECK
 		WebElement srcrow=driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[1]"));
 		WebElement trgtrow=driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[2]"));
 		action.dragAndDrop(srcrow,trgtrow).build().perform();
 		WebElement notificationrow=driver.findElement(By.xpath("//span[text()='Row moved']"));
 		String messagerow=notificationrow.getText();
-		System.out.println("Draggable Rows: " +messagerow);	
+		System.out.println("Draggable Rows: " +messagerow);	*/
+		WebElement ele1 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[1]"));
+		  WebElement ele2 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[2]"));
+		  WebElement ele3 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[3]"));
+		  WebElement ele4 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[4]"));
+		  WebElement ele5 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[5]"));
+		  WebElement ele6 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[6]"));
+		  WebElement ele7 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[7]"));
+		  WebElement ele8 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[8]"));
+		  WebElement ele9 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[9]"));
+		  WebElement ele10 = driver.findElement(By.xpath("//tbody[@id='form:j_idt111_data']//tr[10]"));
+		  
+		  action.dragAndDrop(ele2,ele1).perform();
+		 // dragAndDrop(ele3,ele4).dragAndDrop(ele5,ele6).dragAndDrop(ele7,ele8).dragAndDrop(ele9,ele10).
+		//builder.clickAndHold(ele1 ).moveToElement(ele2).release().perform();
+		  Thread.sleep(2000);
+		  String msg = driver.findElement(By.xpath("//div[@class='ui-growl-message']/span")).getText();
+		  System.out.println(msg);
+		  String msg1 = driver.findElement(By.xpath("//div[@class='ui-growl-message']/p")).getText();
+		  System.out.println("RowMoved"+msg1);
 		//----------------------------------Progress Bar--------------------------------------
 		/*WebElement startbtn=driver.findElement(By.xpath("//span[text()='Start']//parent::button"));
 		startbtn.click();
